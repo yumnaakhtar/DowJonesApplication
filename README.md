@@ -14,7 +14,8 @@ In order to use this application, MongoDB should be installed on your computer.
       mvn clean install 
       ```
   2) Run the application with the following command:
-      ``` java -jar target/DowJonesApplicationSpring-0.0.1-SNAPSHOT.jar 
+      ``` 
+      java -jar target/DowJonesApplicationSpring-0.0.1-SNAPSHOT.jar 
       ```
   3) Open the URL below to see the application:
         http://localhost:8080/
