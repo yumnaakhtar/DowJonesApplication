@@ -30,11 +30,8 @@ public class StockController {
 	}
 	
 	@GetMapping("/upload-bulk")
-	public String uploadBulk(Stock indices) {
+	public String uploadBulk() { //Stock indices) {
 		
-       
-        
-       
 		return "upload-bulk";
 	}
 	
@@ -72,6 +69,19 @@ public class StockController {
 		model.addAttribute("allresults", results);
 		System.out.println(results.size());
 		return "query-results";
+	}
+	
+	@GetMapping("/add-record")
+	public String addRecord(Model model) {
+		model.addAttribute("new_stock",new Stock());
+		return "add-record";
+	}
+	
+	@PostMapping("/dowork")
+	public String addRecord(@ModelAttribute("new_stock") Stock new_stock) {
+		stockData.save(new_stock);
+		System.out.println(new_stock);
+		return "show-record";
 	}
 	
 
