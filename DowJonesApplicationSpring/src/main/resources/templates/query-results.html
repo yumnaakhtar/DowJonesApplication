@@ -38,6 +38,11 @@
 			left:80%;
 			}
 			
+			.query_btn {
+			position: absolute;
+			top: 15%;
+			left:80%;
+			}
 			
 			.title {
 			position:absolute;
@@ -54,7 +59,7 @@
 			.sub {
 			position:absolute;
 			top:45%;
-			left:30%;
+			left:40%;
 			transform:translate(-10%,-80%);
 			font-family:'Courier New', Courier, monospace;
 			font-size: 25px;
@@ -103,6 +108,7 @@
 	<body>
 		<div class="bg"></div>
 		<div class="home_btn"> <button class="btn" onclick="location.href='/';"> Return to Homepage</button></div>
+		<div class="query_btn"> <button class="btn" onclick="location.href='/query-stock';"> Query Another Stock</button></div>
 		<div class="title">Query Results</div>
 		
 			<span th:if="${#lists.size(allresults)==0}">

@@ -79,6 +79,17 @@
 				top: 45%;
 				left:35%;
 			}
+			
+			.alert {
+			  position: absolute;
+			  top:10%;
+			  left:40%;
+			  padding: 10px;
+			  background-color: #f44336; /* Red */
+			  color: white;
+			  margin-bottom: 10px;
+			  font-family:'Courier New', Courier, monospace;
+			}
 		</style>
 	</head>
 		<body>
@@ -95,6 +106,7 @@
 			<div class="form-group col-md-6">
 				<label style="font-family: 'Courier New';position:absolute;top:49%;left:35%;" for="stock">Stock</label>
 				<div style="position:absolute;top:49%;left:42%;"><input  type="text" th:field="*{stock}" class="form-control" id="stock" placeholder="Stock"></div>
+				<div class="alert" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="date" style="font-family: 'Courier New';position:absolute;top:53%;left:35%;">Date</label>
@@ -124,6 +136,8 @@
 			
 			</div>
 			<div class="submit_btn"><button type="submit" class="btn">Submit</button></div>
+			
+				
 		</form>
 		
 	</body>

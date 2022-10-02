@@ -3,9 +3,12 @@ package com.dowjones.controller;
 import java.io.*;
 import java.util.*;
 
+import javax.validation.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
@@ -30,14 +33,14 @@ public class StockController {
 	}
 	
 	@GetMapping("/upload-bulk")
-	public String uploadBulk() { //Stock indices) {
-		
+	public String uploadBulk(Stock bulkStock) {
+		System.out.println(stockData.count());
 		return "upload-bulk";
 	}
 	
 	@PostMapping("/uploaded-file")
 	public String fileUploaded(@RequestParam("file") MultipartFile file, Model model) {
-		stockData.deleteAll();
+		//stockData.deleteAll();
 		try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
             // create csv bean reader
@@ -49,7 +52,7 @@ public class StockController {
             List<Stock> stocks = csvToBean.parse();
 
             stockData.saveAll(stocks);
-            System.out.println(stockData.count());
+            //System.out.println(stockData.count());
 
         } catch (Exception ex) {
             model.addAttribute("message", "An error occurred while processing the CSV file.");
@@ -67,7 +70,7 @@ public class StockController {
 	public String getStock(@RequestParam(name="stock") String stock, Model model) {
 		List<Stock> results = stockData.findByStock(stock);
 		model.addAttribute("allresults", results);
-		System.out.println(results.size());
+		//System.out.println(results.size());
 		return "query-results";
 	}
 	
@@ -78,7 +81,11 @@ public class StockController {
 	}
 	
 	@PostMapping("/dowork")
-	public String addRecord(@ModelAttribute("new_stock") Stock new_stock) {
+	public String addRecord(@ModelAttribute("new_stock") @Valid Stock new_stock, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("here");
+			return "add-record";
+		} 			
 		stockData.save(new_stock);
 		System.out.println(new_stock);
 		return "show-record";

@@ -2,7 +2,12 @@ package com.dowjones.pojos;
 
 import java.util.*;
 
+import javax.validation.constraints.*;
+
+import org.hibernate.validator.constraints.*;
 import org.springframework.data.annotation.*;
+
+import com.mongodb.lang.*;
 
 public class Stock {
 	
@@ -10,7 +15,11 @@ public class Stock {
 	private String id;
 	
 	private String quarter;
+	
+	
+	@Length(min = 1, message="Ticker can not be empty")
 	private String stock;
+	
 	private String date;
 	private String open;
 	private String high;
@@ -30,12 +39,11 @@ public class Stock {
 		
 	}
 
-	public Stock(String id, String quarter, String stock, String date, String open, String high, String low, String close,
+	public Stock(String quarter, String stock, String date, String open, String high, String low, String close,
 			String volume, String percentChangePrice, String percentChangeVolumeOverLastWk, String previousWeeksVolume,
 			String nextWeeksOpen, String nextWeeksClose, String percentChangeNextWeeksPrice, String daysToNextDividend,
 			String percentReturnNextDividend) {
 		super();
-		this.id = id;
 		this.setQuarter(quarter);
 		this.setStock(stock);
 		this.setDate(date);
@@ -191,6 +199,36 @@ public class Stock {
 				+ nextWeeksOpen + ", nextWeeksClose=" + nextWeeksClose + ", percentChangeNextWeeksPrice="
 				+ percentChangeNextWeeksPrice + ", daysToNextDividend=" + daysToNextDividend
 				+ ", percentReturnNextDividend=" + percentReturnNextDividend + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(close, date, daysToNextDividend, high, id, low, nextWeeksClose, nextWeeksOpen, open,
+				percentChangeNextWeeksPrice, percentChangePrice, percentChangeVolumeOverLastWk,
+				percentReturnNextDividend, previousWeeksVolume, quarter, stock, volume);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Stock other = (Stock) obj;
+		return Objects.equals(close, other.close) && Objects.equals(date, other.date)
+				&& Objects.equals(daysToNextDividend, other.daysToNextDividend) && Objects.equals(high, other.high)
+				&& Objects.equals(id, other.id) && Objects.equals(low, other.low)
+				&& Objects.equals(nextWeeksClose, other.nextWeeksClose)
+				&& Objects.equals(nextWeeksOpen, other.nextWeeksOpen) && Objects.equals(open, other.open)
+				&& Objects.equals(percentChangeNextWeeksPrice, other.percentChangeNextWeeksPrice)
+				&& Objects.equals(percentChangePrice, other.percentChangePrice)
+				&& Objects.equals(percentChangeVolumeOverLastWk, other.percentChangeVolumeOverLastWk)
+				&& Objects.equals(percentReturnNextDividend, other.percentReturnNextDividend)
+				&& Objects.equals(previousWeeksVolume, other.previousWeeksVolume)
+				&& Objects.equals(quarter, other.quarter) && Objects.equals(stock, other.stock)
+				&& Objects.equals(volume, other.volume);
 	}
 
 	
