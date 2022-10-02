@@ -33,13 +33,14 @@ public class StockController {
 	public String uploadBulk(Stock indices) {
 		
        
-        stockData.deleteAll();
+        
        
 		return "upload-bulk";
 	}
 	
 	@PostMapping("/uploaded-file")
 	public String fileUploaded(@RequestParam("file") MultipartFile file, Model model) {
+		stockData.deleteAll();
 		try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
 
             // create csv bean reader
@@ -59,7 +60,19 @@ public class StockController {
 		return "uploaded-file";
     }
 
+	@GetMapping("/query-stock")
+	public String queryStock(Model model) {
+		model.addAttribute("stock",new Stock());
+		return "query-stock";
+	}
     
+	@GetMapping("/query/{stock}")
+	public String getStock(@RequestParam(name="stock") String stock, Model model) {
+		List<Stock> results = stockData.findByStock(stock);
+		model.addAttribute("allresults", results);
+		System.out.println(results.size());
+		return "query-results";
+	}
 	
 
 }
