@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<style>
+			body,html {
+				height:100%;
+				margin:0;
+			}
+			.bg {
+			background-color: lightgray;	
+			height: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size:cover;
+			background-attachment:fixed;
+			}
+			
+			.btn{
+			background-color:lightsteelblue;
+			border-radius: 12px;
+			border-color:lightgray;
+			color: black;
+			font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			padding: 15px 32px;
+			text-align:center;
+			text-decoration: none;
+			display:inline-block;
+			font-size:15px;
+			opacity:0.9;
+			
+			}
+			
+			.home_btn {
+			position: absolute;
+			top: 5%;
+			left:80%;
+			}
+			
+			.submit_btn {
+			position: absolute;
+			top: 80%;
+			left:40%;
+			}
+			
+			.center {
+			position: absolute;
+			top: 45%;
+			left:42%;
+			}
+						
+			.title {
+			position:absolute;
+			top:30%;
+			left:56%;
+			transform:translate(-50%,-90%);
+			font-family:'Courier New', Courier, monospace;
+			font-size: 45px;
+			font-style:bold;
+			color:black;
+			min-width:900px;
+			}
+			
+			.sub {
+			position:absolute;
+			top:35%;
+			left:30%;
+			transform:translate(-10%,-80%);
+			font-family:'Courier New', Courier, monospace;
+			font-size: 25px;
+			font-style:bold;
+			color:darkslategray;
+			
+			}
+			
+			.nicelabel {
+				font-family:'Courier New', Courier, monospace;
+				position: absolute;
+				top: 45%;
+				left:35%;
+			}
+			
+			.alert {
+			  position: absolute;
+			  top:10%;
+			  left:40%;
+			  padding: 10px;
+			  background-color: #f44336; /* Red */
+			  color: white;
+			  margin-bottom: 10px;
+			  font-family:'Courier New', Courier, monospace;
+			}
+		</style>
+	</head>
+		<body>
+		<div class="bg"></div>
+		<div class="home_btn"> <button class="btn" onclick="location.href='/';"> Return to Homepage</button></div>
+		<div class="title">Add A Record To The Data Set</div>
+		<div class="sub">Enter the information in the forms below:</div>
+		<form method="POST" action='#' th:action="@{/dowork}" th:object="${new_stock}">
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="quarter" class="nicelabel">Quarter</label>
+				<div class="center"><input type="text" th:field="*{quarter}" class="form-control" id="quarter" placeholder="Quarter"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label style="font-family: 'Courier New';position:absolute;top:49%;left:35%;" for="stock">Stock</label>
+				<div style="position:absolute;top:49%;left:42%;"><input  type="text" th:field="*{stock}" class="form-control" id="stock" placeholder="Stock"></div>
+				<div class="alert" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="date" style="font-family: 'Courier New';position:absolute;top:53%;left:35%;">Date</label>
+				<div style="position:absolute;top:53%;left:42%;"><input type="text" th:field="*{date}" class="form-control" id="date" placeholder="Date"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="open" style="font-family: 'Courier New';position:absolute;top:57%;left:35%;">Open</label>
+				<div style="position:absolute;top:57%;left:42%;"><input type="text" th:field="*{open}" class="form-control" id="open" placeholder="Open"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="high" style="font-family: 'Courier New';position:absolute;top:61%;left:35%;">High</label>
+				<div style="position:absolute;top:61%;left:42%;"><input type="text" th:field="*{high}" class="form-control" id="high" placeholder="High"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="low" style="font-family: 'Courier New';position:absolute;top:65%;left:35%;">Low</label>
+				<div style="position:absolute;top:65%;left:42%;"><input type="text" th:field="*{low}" class="form-control" id="low" placeholder="Low"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="close" style="font-family: 'Courier New';position:absolute;top:69%;left:35%;">Close</label>
+				<div style="position:absolute;top:69%;left:42%;"><input type="text" th:field="*{close}" class="form-control" id="close" placeholder="Close"></div>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="volume" style="font-family: 'Courier New';position:absolute;top:73%;left:35%;">Volume</label>
+				<div style="position:absolute;top:73%;left:42%;"><input type="text" th:field="*{volume}" class="form-control" id="volume" placeholder="Volume"></div>
+			</div>			
+			
+			
+			</div>
+			<div class="submit_btn"><button type="submit" class="btn">Submit</button></div>
+			
+				
+		</form>
+		
+	</body>
+</html>

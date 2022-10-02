@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<link rel="stylesheet" th:href="@{/static/styles.css}"/>
+		<title>Stock HomePage</title>
+		
+	<style>
+	body,html {
+		height:100%;
+		margin:0;
+	}
+	.bg {
+		background-color: lightgray;	
+		height: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size:cover;
+	}
+	.welcometitle {
+	position:absolute;
+	top:40%;
+	left:50%;
+	transform:translate(-50%,-80%);
+	font-family:'Courier New', Courier, monospace;
+	font-size: 60px;
+	font-style:bold;
+	
+	}
+	.subtitle {
+	position:absolute;
+	top:40%;
+	left:32%;
+	transform:translate(-20%,-30%);
+	font-family:'Courier New', Courier, monospace;
+	font-size: 40px;
+	font-style:bold;
+	color:darkslategray;
+	
+	}
+	.bulk_btn {
+		position: absolute;
+		top: 58%;
+		left:38%;
+	}
+	.query_btn {
+		position: absolute;
+		top: 69%;
+		left:38%;
+	}
+	.add_btn {
+		position: absolute;
+		top: 80%;
+		left:38%;
+	}
+	.btn{
+		background-color:lightsteelblue;
+		border-radius: 12px;
+		border-color:lightgray;
+		color: black;
+		font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		padding: 15px 32px;
+		text-align:center;
+		text-decoration: none;
+		display:inline-block;
+		font-size:20px;
+		opacity:0.9;
+		
+	}
+	
+	</style>
+	</head>
+	<body>
+		<div class="bg"></div>
+		<div class="welcometitle"><p>WELCOME</p></div>
+		<div class="subtitle"><p>Dow Jones Spring Application</p></div>
+		<div class="bulk_btn"> <button class="btn" onclick="location.href='/upload-bulk';"> Upload Bulk Data Set</button></div>
+		<div class="query_btn"> <button class="btn" onclick="location.href='/query-stock';"> Query by Stock Ticker</button></div>
+		<div class="add_btn"> <button class="btn" onclick="location.href='/add-record';"> Add a New Record</button></div>
+	</body>
+
+</html>
